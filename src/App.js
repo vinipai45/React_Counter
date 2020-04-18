@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+// import "./App.css";
 import Counters from "./components/counters";
 import NavBar from "./components/navbar";
 
@@ -12,10 +12,18 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
   };
+
   handleIncrement = (counter) => {
     const counters = this.state.counters;
     const index = counters.indexOf(counter);
     counters[index].value++;
+    this.setState({ counters });
+  };
+
+  handleDecrement = (counter) => {
+    const counters = this.state.counters;
+    const index = counters.indexOf(counter);
+    counters[index].value--;
     this.setState({ counters });
   };
 
@@ -45,6 +53,7 @@ class App extends Component {
         <main className="container">
           <Counters
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onReset={this.handleReset}
             onDelete={this.handleDelete}
             counters={this.state.counters}
